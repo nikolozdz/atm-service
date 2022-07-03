@@ -8,9 +8,9 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class RestTemplateBean {
 
-    private int connectionTimeout = 3000;
+    private int connectionTimeout = 2000;
 
-    private int readTimeout = 30000;
+    private int readTimeout = 20000;
 
     @Bean
     public RestTemplate restTemplate() {

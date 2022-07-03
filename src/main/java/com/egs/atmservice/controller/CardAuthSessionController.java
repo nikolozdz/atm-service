@@ -12,7 +12,6 @@ public class CardAuthSessionController {
     @Autowired
     CardAuthService cardAuthService;
 
-
     @GetMapping("validate")
     public ValidateCardResponse validateCard(@RequestParam(value = "cardNumber") String cardNumber) throws ATMServiceException {
         return cardAuthService.validateCard(cardNumber);

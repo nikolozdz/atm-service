@@ -10,5 +10,4 @@ public interface CardAuthService {
     void invalidateSession();
 
     void cardAuthorization(String code) throws ATMServiceException;
-
 }

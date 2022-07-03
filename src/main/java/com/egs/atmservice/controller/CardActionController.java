@@ -31,8 +31,4 @@ public class CardActionController {
     public void withdrawal(HttpSession httpSession, @RequestBody WithdrawRequest withdrawalRequest) throws ATMServiceException {
         cardActionService.withdraw(withdrawalRequest.getCardNumber(), withdrawalRequest.getAmount());
     }
-
-
-
-
 }

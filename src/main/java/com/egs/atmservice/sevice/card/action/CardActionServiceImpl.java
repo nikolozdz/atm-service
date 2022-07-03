@@ -4,7 +4,6 @@ import com.egs.atmservice.configuration.cardsession.ValidatedCard;
 import com.egs.atmservice.exception.ATMServiceException;
 import com.egs.atmservice.model.card.DepositRequest;
 import com.egs.atmservice.model.card.WithdrawRequest;
-import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,10 +36,9 @@ public class CardActionServiceImpl implements CardActionService {
     @Override
     public BigDecimal checkBalance(String cardNumber) throws ATMServiceException {
         validateAction("CHECK_BALANCE");
+        HttpEntity<String> request = new HttpEntity<>(getHttpHeaders());
 
-        HttpEntity<String> entity = new HttpEntity<>(getHttpHeaders());
-
-        ResponseEntity<BigDecimal> response = restTemplate.exchange(bankServiceURL + actionsEndpoint + "/checkBalance?cardNumber=" + cardNumber, HttpMethod.GET, entity, BigDecimal.class);
+        ResponseEntity<BigDecimal> response = restTemplate.exchange(bankServiceURL + actionsEndpoint + "/checkBalance?cardNumber=" + cardNumber, HttpMethod.GET, request, BigDecimal.class);
         if (response.getStatusCode() != HttpStatus.OK) {
             log.error(httpErrorMessage);
             throw new ATMServiceException(httpErrorMessage);
@@ -51,7 +49,6 @@ public class CardActionServiceImpl implements CardActionService {
     @Override
     public void deposit(String cardNumber, BigDecimal amount) throws ATMServiceException {
         validateAction("DEPOSIT");
-
         DepositRequest depositRequest = new DepositRequest();
         depositRequest.setAmount(amount);
         depositRequest.setCardNumber(validatedCard.getCardNumber());

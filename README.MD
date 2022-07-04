@@ -20,6 +20,7 @@ Depends on Bank Service if not deployed no operation could be done.
 * Run AtmServiceApplication
 
 #User Manual
+* to connect this docker container with bank-service container you need to create network and connect those two dockers in the network. or just use external ip in bankServiceUrl
 * Visit Swagger configuration to see endpoints.
 * http://localhost:8081/swagger-ui/index.html
 * Steps to follow once application deployed.
